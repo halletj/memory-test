@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory-Test</title>
+  <!--  Simple reset to delete the margins  -->
+  <style>
+    body { margin: 0; }
+    canvas { width: 100%; height: 100% }
+    #info {
+      color:aqua;
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      text-align: center;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1; /* TODO Solve this in HTML */
+    }
+  </style>
+
+  <!--  Three.js -->
+  <script type="module" src="./lil-gui.esm.js"></script>
+  <script src="./three.min.js"></script>
+  <script src="./stats.min.js"></script>
+  <script src="./GLTF2Loader.js"></script>
+</head>
+<body>
+  <div id="info">
+  Just like the game <a href="https://g.co/kgs/NBqXFex">Katamari</a>, add model control adds a random model to the scene.
+  </div>
+  <!--  Our code  -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
