@@ -84,11 +84,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 // Append Renderer to DOM
 document.body.appendChild(renderer.domElement);
 
-/*
-const stats = Stats();
-document.body.appendChild(stats.dom);
-stats.showPanel(2);
-*/
 
 // ------------------------------------------------
 // FUN STARTS HERE
@@ -100,7 +95,6 @@ addModel(scene, null);
 addModel(scene, null);
 addModel(scene, null);
 
-/*
 import GUI from './lil-gui.esm.js'; 
 const gui = new GUI();
 
@@ -134,6 +128,11 @@ modelCount.setValue(3);
 memoryUsed.name("Total memory");
 memoryUsed.disable();
 // memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
+
+/*
+const stats = Stats();
+document.body.appendChild(stats.dom);
+stats.showPanel(2);
 */
 
 // Render Loop
