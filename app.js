@@ -84,9 +84,11 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 // Append Renderer to DOM
 document.body.appendChild(renderer.domElement);
 
+/*
 const stats = Stats();
 document.body.appendChild(stats.dom);
 stats.showPanel(2);
+*/
 
 // ------------------------------------------------
 // FUN STARTS HERE
@@ -121,7 +123,7 @@ modelAdd.setValue(function(){
             }
         });    
         modelCount.setValue(count);
-        memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
+        // memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
     });
 });
 modelCount.name("Model count");
@@ -130,13 +132,13 @@ modelCount.setValue(3);
 
 memoryUsed.name("Total memory");
 memoryUsed.disable();
-memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
+// memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
 
 // Render Loop
 var render = function () {
     requestAnimationFrame(render);
 
-    stats.update();
+    // stats.update();
 
     headLight.position.copy(camera.position);
 
