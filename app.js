@@ -100,6 +100,7 @@ addModel(scene, null);
 addModel(scene, null);
 addModel(scene, null);
 
+/*
 import GUI from './lil-gui.esm.js'; 
 const gui = new GUI();
 
@@ -133,6 +134,7 @@ modelCount.setValue(3);
 memoryUsed.name("Total memory");
 memoryUsed.disable();
 // memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
+*/
 
 // Render Loop
 var render = function () {
