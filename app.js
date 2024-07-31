@@ -49,6 +49,28 @@ function addModel(scene, callback) {
     });
 }
 
+function estimateBytesUsed(geometry) {
+    var memory = 0;
+    for(const name in geometry.attributes) {
+        const attr = geometry.getAttribute(name);
+        memory += attr.count * attr.itemSize * attr.array.BYTES_PER_ELEMENT;
+    }
+    const indices = geometry.getIndex();
+	memory += indices ? indices.count * indices.itemSize * indices.array.BYTES_PER_ELEMENT : 0;
+	return memory;
+}
+
+function totalMemory(scene) 
+{
+    var memory = 0;
+    scene.traverse(function (e) {
+        if (e instanceof THREE.Mesh) {
+            memory += estimateBytesUsed(e.geometry);
+        }
+    });
+    return memory;
+}
+
 function setupLighting(scene) {
     // Add an ambient light
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
@@ -118,7 +140,11 @@ modelAdd.setValue(function(){
             }
         });    
         modelCount.setValue(count);
-        // memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
+        if (self && self.performance && self.performance.memory)
+            memoryUsed.setValue(Math.ceil(performance.memory.usedJSHeapSize / 1024 / 1024));
+        else
+            memoryUsed.setValue(Math.ceil(totalMemory(scene) / 1024 / 1024));
+        
     });
 });
 modelCount.name("Model count");
@@ -127,19 +153,20 @@ modelCount.setValue(3);
 
 memoryUsed.name("Total memory");
 memoryUsed.disable();
-// memoryUsed.setValue(performance.memory.usedJSHeapSize / 1024 / 1024);
+if (self && self.performance && self.performance.memory)
+    memoryUsed.setValue(Math.ceil(performance.memory.usedJSHeapSize / 1024 / 1024));
+else
+    memoryUsed.setValue(Math.ceil(totalMemory(scene) / 1024 / 1024));
 
-/*
 const stats = Stats();
 document.body.appendChild(stats.dom);
 stats.showPanel(2);
-*/
 
 // Render Loop
 var render = function () {
     requestAnimationFrame(render);
 
-    // stats.update();
+    stats.update();
 
     headLight.position.copy(camera.position);
 
