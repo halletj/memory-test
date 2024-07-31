@@ -62,13 +62,14 @@ function estimateBytesUsed(geometry) {
 
 function totalMemory(scene) 
 {
+    const guess = 2.5;
     var memory = 0;
     scene.traverse(function (e) {
         if (e instanceof THREE.Mesh) {
             memory += estimateBytesUsed(e.geometry);
         }
     });
-    return memory;
+    return memory * guess;
 }
 
 function setupLighting(scene) {
